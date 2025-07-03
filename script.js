@@ -88,3 +88,8 @@ btnHold.addEventListener('click', function () {
 
 // Reset game
 btnNew.addEventListener('click', init);
+
+
+
+
+
