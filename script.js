@@ -1,5 +1,9 @@
 'use strict';
 
+alert(
+  "🎮 Welcome to the Ping Game!\n\n👉 Two players take turns.\n🎲 Click 'Roll dice' to roll the dice.\n📥 Click 'Hold' to save your score.\n❌ If you roll a 1, your turn ends!\n🏆 First to reach 100 points wins!\n\nHave fun!"
+);
+
 // Selecting the elements
 const player0El = document.querySelector('.player--0');
 const player1El = document.querySelector('.player--1');
@@ -47,20 +51,14 @@ const switchPlayer = function () {
 // Rolling dice functionality
 btnRoll.addEventListener('click', function () {
   if (playing) {
-    // Generate a random dice roll
     const dice = Math.trunc(Math.random() * 6) + 1;
-
-    // Display dice
     diceEl.classList.remove('hidden');
     diceEl.src = `dice-${dice}.png`;
 
-    // Check for rolled 1: if true, switch to next player
     if (dice !== 1) {
-      // Add dice to current score
       currentScore += dice;
       document.getElementById(`current--${activePlayer}`).textContent = currentScore;
     } else {
-      // Switch player
       switchPlayer();
     }
   }
@@ -69,18 +67,15 @@ btnRoll.addEventListener('click', function () {
 // Hold button functionality
 btnHold.addEventListener('click', function () {
   if (playing) {
-    // Add current score to the active player's total score
     scores[activePlayer] += currentScore;
     document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
 
-    // Check if the active player's score is >= 100
     if (scores[activePlayer] >= 100) {
       playing = false;
       diceEl.classList.add('hidden');
       document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
       document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
     } else {
-      // Switch to the next player
       switchPlayer();
     }
   }
@@ -88,8 +83,3 @@ btnHold.addEventListener('click', function () {
 
 // Reset game
 btnNew.addEventListener('click', init);
-
-
-
-
-
